@@ -1,0 +1,42 @@
+﻿<Window x:Class="ui.CalculTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ui"
+        mc:Ignorable="d"
+        Title="Tableau antécédents-images" Height="600" Width="350" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Nb couples : " Margin="2,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <local:IntegerBox x:Name="NbCouplesBox" Grid.Column="1" Text="100" LostFocus="NbCouplesBox_LostFocus"/>
+
+        <TextBlock Text="Intervalle : " Grid.Column="2" Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <local:DecimalBox x:Name="IntervalBox" Grid.Column="3" Text="0,5" LostFocus="IntervalBox_LostFocus"/>
+
+        <DataGrid x:Name="CouplesTable" ItemsSource="{Binding}" 
+                  Grid.Row="1" Grid.ColumnSpan="4" 
+                  CanUserReorderColumns="False" 
+                  CanUserResizeColumns="False"
+                  CanUserResizeRows="False"
+                  AutoGenerateColumns="False"
+                  >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="X" IsReadOnly="True" Width="0.5*" Binding="{Binding X}" />
+                <DataGridTextColumn Header="Y" IsReadOnly="True" Width="0.5*" Binding="{Binding Y}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

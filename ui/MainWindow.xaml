@@ -1,0 +1,95 @@
+﻿<Window x:Class="ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ui"
+        mc:Ignorable="d"
+        Title="ExpGraph" Height="600" Width="800">
+
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="?">
+                
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem x:Name="ProgramStatusMsg">
+                Attente d'une expression mathématique.
+            </StatusBarItem>
+        </StatusBar>
+
+        <Grid DockPanel.Dock="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="Zone de saisie">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBlock Text="Votre expression mathématique : " FontSize="16"/>
+                        <RichTextBox x:Name="ExpTextBox" FontSize="20" AcceptsReturn="False" />
+
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="0.3*"/>
+                                <ColumnDefinition Width="0.3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock x:Name="ErrorBlock" FontWeight="Bold" Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" />
+                            <Button x:Name="AnalyzeButton" Grid.Column="1" Content="Analyser" Margin="0,0,10,0" Click="AnalyzeButton_Click"/>
+                            <Button x:Name="ClearButton" Grid.Column="2" Content="Effacer" Click="ClearButton_Click" />
+                        </Grid>
+
+                        <Button Content="qsdqsdq" Width="50" />
+                    </StackPanel>
+
+                    <Image DockPanel.Dock="Bottom" Stretch="None" x:Name="UserTexFormula" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </DockPanel>
+            </GroupBox>
+
+            <GroupBox x:Name="CalculatorGroup" Header="Calculateur d'image" Grid.Row="1">
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*" />
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition Height="0.2*" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="X : " FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <local:DecimalBox x:Name="InputBox" Grid.Column="1" TextAlignment="Center" FontSize="20" />
+
+                    <TextBlock Grid.Row="1" Text="F(X) : " FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="OutputBox" Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontSize="20" IsReadOnly="True" />
+
+                    <Button x:Name="CalculateOutputButton" Content="Calculer" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,5,0,0" Click="CalculateOutputButton_Click"/>
+
+                    <Image x:Name="ShowCalculTable" Grid.Row="3" Grid.ColumnSpan="2" MouseDown="ShowCalculTable_MouseDown" Cursor="Hand" ToolTip="Afficher le tableau antécédents-images."/>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox x:Name="DerivativeGroup" Header="Calculateur de dérivée" Grid.Column="1">
+                <DockPanel>
+                    <Button x:Name="ShowDerivativesTable" Content="Afficher la table des dérivées" DockPanel.Dock="Bottom" Click="ShowDerivativesTable_Click"/>
+                    <Image Stretch="None" x:Name="DerivativeFormula" DockPanel.Dock="Top" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </DockPanel>
+            </GroupBox>
+
+            <Image x:Name="ShowFuncGraphic" Grid.Row="1" Grid.Column="1" Cursor="Hand" MouseDown="ShowFuncGraphic_MouseDown" ToolTip="Afficher le graphique de la fonction"/>
+        </Grid>
+    </DockPanel>
+</Window>
